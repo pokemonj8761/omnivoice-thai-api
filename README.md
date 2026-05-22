@@ -12,30 +12,45 @@ Powered by [hotdogs/omnivoice-thai](https://huggingface.co/hotdogs/omnivoice-tha
 | 🎨 **Voice Design** | Describe voice attributes in natural language | `instruct` + `text` |
 | 🤖 **Auto Voice** | Let the model choose the best voice | `text` only |
 
-## 🚀 One-Click Install
+## 🚀 Install — One Command
 
 ```bash
-git clone https://github.com/nanofatdog/omnivoice-thai-api.git
-cd omnivoice-thai-api
-chmod +x install.sh
-sudo ./install.sh
+curl -fsSL https://raw.githubusercontent.com/nanofatdog/omnivoice-thai-api/main/install.sh | bash
 ```
 
-The installer automatically:
-- Checks Python / CUDA / GPU / disk space
-- Installs all dependencies
-- Downloads the model (~4.4GB) from HuggingFace
-- Sets up systemd auto-start (if running as root)
-- Starts the server on port `7860`
+That's it. The installer handles **everything**:
+
+1. Checks Python 3.9+, disk space
+2. Installs PyTorch + CUDA, `huggingface_hub[cli]`, omnivoice, FastAPI, uvicorn
+3. Downloads the model (~4.4GB): `hf download hotdogs/omnivoice-thai --local-dir ~/omnivoice-thai`
+4. Downloads `server.py` from GitHub
+5. Starts the server on port `7860`
+
+### Or step-by-step
+
+```bash
+# Install dependencies
+pip install "huggingface_hub[cli]" omnivoice fastapi "uvicorn[standard]" soundfile python-multipart
+
+# Install PyTorch (if not already)
+pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+# Download model
+hf download hotdogs/omnivoice-thai --local-dir ~/omnivoice-thai
+
+# Download server
+curl -fsSL -o ~/omnivoice-thai/server.py \
+  https://raw.githubusercontent.com/nanofatdog/omnivoice-thai-api/main/server.py
+
+# Start
+cd ~/omnivoice-thai && python3 server.py
+```
 
 ### Custom options
 
 ```bash
 # Custom port & model location
-OMNIVOICE_PORT=9000 OMNIVOICE_MODEL_DIR=/data/omnivoice ./install.sh
-
-# CPU-only (no CUDA)
-OMNIVOICE_AUTO_START=no ./install.sh
+OMNIVOICE_PORT=9000 OMNIVOICE_MODEL_DIR=/data/omnivoice curl -fsSL https://.../install.sh | bash
 ```
 
 ## 📡 API Reference
@@ -175,11 +190,6 @@ pkill -f server.py
 
 # View logs
 tail -f ~/omnivoice-thai/server.log
-
-# Systemd
-sudo systemctl start omnivoice-thai
-sudo systemctl stop omnivoice-thai
-sudo systemctl status omnivoice-thai
 ```
 
 ## 🔧 Environment Variables
