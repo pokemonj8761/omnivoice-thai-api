@@ -55,7 +55,16 @@ OMNIVOICE_PORT=9000 OMNIVOICE_MODEL_DIR=/data/omnivoice curl -fsSL https://.../i
 
 ## 🐳 Docker
 
-### Quick start (model baked into image)
+### Option A: Pull from Docker Hub (fastest)
+
+```bash
+docker pull aidogs/omnivoice-thai-api:latest
+docker run --gpus all -p 7860:7860 aidogs/omnivoice-thai-api:latest
+```
+
+Image ~6GB (CUDA 12.1 + PyTorch + OmniVoice + model baked-in). One command, ready to use.
+
+### Option B: Build from source
 
 ```bash
 git clone https://github.com/nanofatdog/omnivoice-thai-api.git
@@ -63,7 +72,19 @@ cd omnivoice-thai-api
 docker compose up -d --build
 ```
 
-Image ~6GB, first boot loads model into VRAM (~90s). Then:
+Image ~6GB, first boot loads model into VRAM (~90s).
+
+Or use prebuilt image in `docker-compose.yml`:
+
+```yaml
+services:
+  omnivoice-thai:
+    image: aidogs/omnivoice-thai-api:latest   # pull from Hub
+    # build: .                                 # or build locally
+    ...
+```
+
+Then:
 
 ```bash
 # Logs

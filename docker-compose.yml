@@ -2,7 +2,8 @@ version: '3.8'
 
 services:
   omnivoice-thai:
-    build: .
+    image: aidogs/omnivoice-thai-api:latest   # pull from Docker Hub
+    build: .                                   # fallback: build locally
     container_name: omnivoice-thai
     restart: unless-stopped
     ports:
