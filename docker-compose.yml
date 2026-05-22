@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   omnivoice-thai:
     image: aidogs/omnivoice-thai-api:latest   # pull from Docker Hub
