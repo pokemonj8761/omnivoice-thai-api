@@ -1,4 +1,4 @@
-huggingface_hub[cli]>=0.25.0
+huggingface_hub>=0.25.0
 omnivoice>=0.1.0
 fastapi>=0.100.0
 uvicorn[standard]>=0.20.0

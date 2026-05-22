@@ -35,7 +35,7 @@ curl -fsSL https://raw.githubusercontent.com/nanofatdog/omnivoice-thai-api/main/
 
 ```bash
 # ติดตั้ง dependencies
-pip install "huggingface_hub[cli]" omnivoice fastapi "uvicorn[standard]" soundfile python-multipart
+pip install "huggingface_hub" omnivoice fastapi "uvicorn[standard]" soundfile python-multipart
 
 # ติดตั้ง PyTorch (ถ้ายังไม่มี)
 pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu121

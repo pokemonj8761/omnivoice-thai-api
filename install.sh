@@ -57,7 +57,7 @@ fi
 ok "PyTorch ready"
 
 $PYTHON -m pip install --quiet \
-    "huggingface_hub[cli]" \
+    "huggingface_hub" \
     omnivoice \
     fastapi \
     "uvicorn[standard]" \
